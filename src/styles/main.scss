@@ -1,0 +1,61 @@
+$color-white: #ffffff;
+$color-black-1: #3A3A3A;
+$color-black-2: #222D39;
+$color-gray-1: #F5F5F5;
+$color-gray-2: #E5E5E5;
+$color-gray-3: #D8D8D8;
+$color-gray-4: #B0B0B0;
+$color-gray-5: #9B9B9B;
+$color-gray-6: #4A4A4A;
+$color-blue-1: #28B0FC;
+$color-orange-1: #f59a2d;
+$color-orange-2: #ed7004;
+
+body {
+	overflow: auto;
+	background-color: $color-black-1;
+}
+
+* {
+	&::-webkit-scrollbar {
+		width: 10px;
+		height: 0px;
+	}
+	&::-webkit-scrollbar-button {
+		width: 10px;
+		height: 0px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: $color-orange-2;
+		border: 0px none #ffffff;
+		border-radius: 100px;
+	}
+	&::-webkit-scrollbar-thumb:hover {
+		background: $color-orange-2;
+	}
+	&::-webkit-scrollbar-thumb:active {
+		background: #323232;
+	}
+	&::-webkit-scrollbar-track {
+		background: $color-gray-2;
+		border: 0px solid #ffffff;
+		border-radius: 40px;
+	}
+	&::-webkit-scrollbar-track:hover {
+		background: $color-gray-2;
+	}
+	&::-webkit-scrollbar-track:active {
+		background: $color-gray-2;
+	}
+	&::-webkit-scrollbar-corner {
+		background: transparent;
+	}
+}
+
+body.no-scroll {
+	overflow: hidden;
+}
+
+main {
+	min-height: 60vh;
+}

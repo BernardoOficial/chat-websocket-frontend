@@ -1,0 +1,58 @@
+@import "../../styles/main.scss";
+
+.home {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.home__container {
+		width: 100%;	
+		max-width: 450px;
+		margin: 50px auto;
+
+		.home__form {
+			width: 100%;
+
+			.home__title {
+				font-size: 26px;	
+				font-weight: bold;
+				text-align: center;
+				margin-bottom: 20px;
+				color: $color-white;
+			}
+	
+			.home__description {
+				margin-bottom: 20px;
+				text-align: center;
+				color: $color-white;
+			}
+	
+			.home__container-submit {
+				width: 100%;
+				margin-top: 20px;
+	
+				.home__submit {
+					border-radius: 8px;
+					width: 100%;
+					padding: 14px 30px;
+					background-color: $color-orange-2;
+	
+					font-size: 18px;
+					font-weight: bold;
+					line-height: 1;
+					color: $color-white;
+	
+					transition: 0.3s ease-in;
+	
+					&:hover {
+						opacity: 0.8;
+					}
+				}
+	
+			}
+		}
+
+	}
+}

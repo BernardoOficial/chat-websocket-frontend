@@ -1,0 +1,126 @@
+@import "../../styles/main.scss";
+
+.chat {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+
+	.chat__container {
+		width: 100%;	
+		max-width: 450px;
+		margin: 50px auto;
+
+		.chat__header {
+			
+			.chat__header-nav {
+				display: flex;
+				align-items: center;
+				justify-content: stretch;
+				
+				.chat-header-nav-back {
+					font-size: 16px;
+					border-radius: 8px;
+					padding: 8px;
+					background-color: $color-orange-2;
+					color: $color-white;
+					transition: 0.3s ease;
+
+					&:hover {
+						opacity: 0.6;
+					}
+				}
+
+				.chat-header-nav-room {
+					font-size: 16px;
+					text-transform: uppercase;
+					letter-spacing: 1.6px;
+					color: $color-white;
+					text-align: center;
+					flex: 1 0;
+				}
+
+			}
+			
+			.chat__header-welcome {
+				border: 1px solid $color-white;
+				padding: 8px;
+				border-radius: 8px;
+				margin: 8px 0px;
+
+				.chat__welcome-text {
+					font-size: 16px;
+					color: $color-white;
+					text-align: center;
+				}
+			}
+			
+		}
+
+		.chat__container-messages {
+			width: 100%;
+			margin: 15px 0px;
+			padding-top: 15px;
+			border-top: 4px solid $color-orange-2;
+			border-radius: 4px;
+
+			.chat__list-messages {
+				width: 100%;
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+				overflow: auto;
+				min-height: 350px;
+				max-height: 350px;
+				padding-right: 10px;
+				
+				.chat__item-message {
+					border: 1px solid $color-white;
+					padding: 8px 15px;
+					border-radius: 8px;
+					display: inline-block;
+					align-self: flex-start;
+					max-width: 300px;
+
+					& ~ .chat__item-message {
+						margin-top: 10px;
+					}
+
+					&--my-message {
+						align-self: flex-end;
+					}
+					
+					.chat__message {
+						font-size: 16px;
+						color: $color-white;
+					}
+				}
+			}
+		}
+
+		.chat__form {
+			display: flex;
+			align-items: stretch;
+			justify-content: stretch;
+
+			.chat__btn-send {
+				font-size: 16px;
+				border-radius: 8px;
+				padding: 8px;
+				background-color: $color-orange-2;
+				color: $color-white;
+				transition: 0.3s ease;
+				margin-left: 10px;
+				margin-top: 20px;
+
+				&:hover {
+					opacity: 0.6;
+				}
+			}
+		}
+	}
+	
+}
