@@ -12,7 +12,7 @@ export function SelectRoom({ setRoom }: SelectRoomParams) {
 			id="select-room" 
 			onChange={(e) => setRoom(e.target.value)}
 		>
-			<option selected>selecione a sala</option>
+			<option value="">selecione a sala</option>
 			<option value="node">node</option>
 			<option value="java">java</option>
 			<option value="python">python</option>

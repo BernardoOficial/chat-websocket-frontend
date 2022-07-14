@@ -32,7 +32,7 @@ export function Home() {
 					<p className="home__description">converse sobre suas tecnologias preferidas com seus colegas, para trocar de experiência, dúvidas etc.</p>
 
 					<SelectRoom setRoom={setRoom} />
-					<FieldForm label="nome" nameInput="username" setValue={setUsername} />
+					<FieldForm label="nome" nameInput="username" value={username} setValue={setUsername}  />
 
 					<div className="home__container-submit">
 						<button className="home__submit" type="submit">entrar na sala</button>
