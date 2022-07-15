@@ -4,6 +4,7 @@ import { FieldForm } from "../Home/components/FieldForm/FieldForm";
 import { io } from "socket.io-client";
 
 import "./styles.scss";
+import { formatDate } from "../../utils/formatDate";
 
 interface Message {
 	username: string;
@@ -11,9 +12,18 @@ interface Message {
 	message: string;
 }
 
+interface MessageRoom {
+	username: string;
+	room: string;
+	message: string;
+	createdAt: Date;
+}
+
 const socket = io("http://localhost:3001");
+socket.on("connect", () => console.log("[IO] Connect"));
 
 export function Chat() {
+
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 	
@@ -23,6 +33,7 @@ export function Chat() {
 	const [message, setMessage] = useState("");
 	const [username, setUsername] = useState(paramsUsername);
 	const [room, setRoom] = useState(paramsRoom);
+	const [messagesRoom, setMessagesRoom] = useState<MessageRoom[]>([]);
 
 	useEffect(() => {
 		if(paramsRoom === null && paramsUsername === null) {
@@ -31,21 +42,17 @@ export function Chat() {
 	}, [navigate, paramsRoom, paramsUsername])
 	
 	useEffect(() => {
-		console.log(username, room);
-	}, [username, room])
+		socket.emit("room", { username, room }, (response: MessageRoom[]) => {
+			setMessagesRoom(response);
+		});
+	}, [username, room]);
 	
 	useEffect(() => {
-		socket.on("receive-message", data => {
-			console.log(data);
-		});
-	}, [])
-
-	socket.on("receive-message", data => {
-		console.log(data);
-	});
-
-	useEffect(() => {
-	}, [message])
+		const updateNewMessage = (newMessage: MessageRoom) => 
+			setMessagesRoom(currentMessages => [...currentMessages, newMessage])
+		socket.on("receive-message", updateNewMessage);
+		return function () { socket.off("receive-message", updateNewMessage) }
+	}, []);
 
 	function updateMessage(newMessage: string) {
 		setMessage(newMessage);
@@ -53,6 +60,7 @@ export function Chat() {
 
 	function handleBackPage() {
 		navigate("/");
+		socket.disconnect();
 	}
 
 	function submitNewMessage() {
@@ -95,15 +103,21 @@ export function Chat() {
 
 				<div className="chat__container-messages">
 					<ul className="chat__list-messages">
-						<li className="chat__item-message">
-							<p className="chat__message">olá, meu nome é Bernardo Pereira Oliveira</p>
-						</li>
-						<li className="chat__item-message chat__item-message--my-message">
-							<p className="chat__message">olá, meu nome é Bernardo</p>
-						</li>
-						<li className="chat__item-message chat__item-message--my-message">
-							<p className="chat__message">olá, meu nome é Bernardo</p>
-						</li>
+						{messagesRoom.length > 0 ? (
+							messagesRoom.map((message, i) => (
+								<li key={i} className={`chat__item-message ${message.username === username ? 'chat__item-message--my-message' : '' }`}>
+									<div className="chat__message-info">
+										<span className="chat__info-item chat__author">{message.username}</span>
+										<span className="chat__info-item chat__created-at">{formatDate(message.createdAt)}</span>
+									</div>
+									<p className="chat__message">{message.message}</p>
+								</li>
+							))
+						) : (
+							<li className="chat__item-empty">
+								<p className="chat__message">inicie uma conversa no chat</p>
+							</li>
+						)}
 					</ul>
 				</div>
 

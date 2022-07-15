@@ -9,7 +9,7 @@
 
 	.chat__container {
 		width: 100%;	
-		max-width: 450px;
+		max-width: 500px;
 		margin: 50px auto;
 
 		.chat__header {
@@ -73,9 +73,24 @@
 				justify-content: flex-start;
 				align-items: flex-start;
 				overflow: auto;
-				min-height: 350px;
+				// min-height: 350px;
 				max-height: 350px;
 				padding-right: 10px;
+
+				.chat__item-empty {
+					margin-top: 30px;
+					padding: 40px 15px;
+					border: 1px solid $color-white;
+					border-radius: 8px;
+					display: inline-block;
+					width: 100%;
+
+					.chat__message {
+						font-size: 16px;
+						color: $color-white;
+						text-align: center;
+					}
+				}
 				
 				.chat__item-message {
 					border: 1px solid $color-white;
@@ -91,6 +106,42 @@
 
 					&--my-message {
 						align-self: flex-end;
+					}
+
+					.chat__message-info {
+						display: flex;
+						align-items: center;
+						margin-bottom: 0.2rem;
+
+						.chat__info-item {
+
+							& ~ .chat__info-item {
+								margin-left: 1rem;
+
+								&::before {
+									content: "|";
+									position: relative;
+									right: 0.5rem;
+									color: $color-white;
+									font-size: 12px;
+								}
+
+							}
+						}
+						
+						.chat__author {
+							font-weight: bold;	
+							font-size: 12px;
+							color: $color-white;
+							line-height: 1.6;
+						}
+
+						.chat__created-at {
+							font-weight: bold;
+							font-size: 10px;
+							color: $color-orange-1;
+							line-height: 1.6;
+						}
 					}
 					
 					.chat__message {
