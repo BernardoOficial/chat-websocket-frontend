@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { FieldForm } from "./components/FieldForm/FieldForm";
 import { SelectRoom } from "./components/SelectRoom/SelectRoom";
@@ -17,7 +17,7 @@ export function Home() {
 		event?.preventDefault();
 
 		if(username.length > 1 && room.length > 0 && room !== "selecione a sala") {
-			navigate("/chat" + `?username=${username}&room=${room}`);
+			navigate(`/chat?username=${username}&room=${room}`);
 		}
 	}
 

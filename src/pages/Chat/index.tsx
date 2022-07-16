@@ -19,7 +19,7 @@ interface MessageRoom {
 	createdAt: Date;
 }
 
-const socket = io("http://localhost:3001");
+const socket = io(process.env.REACT_APP_HOST_SOCKET_IO || "http://localhost:3001");
 socket.on("connect", () => console.log("[IO] Connect"));
 
 export function Chat() {
@@ -31,8 +31,8 @@ export function Chat() {
 	const paramsRoom = searchParams.get("room");
 
 	const [message, setMessage] = useState("");
-	const [username, setUsername] = useState(paramsUsername);
-	const [room, setRoom] = useState(paramsRoom);
+	const [username] = useState(paramsUsername);
+	const [room] = useState(paramsRoom);
 	const [messagesRoom, setMessagesRoom] = useState<MessageRoom[]>([]);
 
 	useEffect(() => {
